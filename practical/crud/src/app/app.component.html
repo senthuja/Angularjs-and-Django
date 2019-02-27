@@ -1,0 +1,33 @@
+<h1>Inventory</h1>
+  <div class="col-md-8">
+    <h2>List of Inventory</h2>
+    <ul>
+      <li *ngFor="let inventory of inventorys">
+        <h2 (click)="inventoryClicked(inventory)">{{inventory.name}}</h2>
+      </li>
+    </ul>
+      <div class="col-md-8">
+        <label>Search: <input ngModel="id">
+        <label ngRepeat="inventory in inventorys | filter:id"></label><br>
+        </label>
+        <script>
+        angular.module('myApp', []).controller('inventorysCtrl', function($scope)
+        {
+          $scope.inventory
+        });
+        </script>
+      </div>
+      Id <input type="text" [(ngModel)]="id"/><br>
+      Name <input type="text" [(ngModel)]="name"/><br>
+      Description <input type="text" [(ngModel)]="description"/><br>
+      Unit_price<input type="text" [(ngModel)]="unit_price "/><br>
+      Number_of_unit_available<input type="text" [(ngModel)]="number_of_unit_available"/><br>
+      <div class="col-md-8">
+        <button class="button1" *ngIf="selectedInventory.id != -1" (click)= "updateInventory()">UPDATE</button>
+        <button class="button2" *ngIf="selectedInventory.id == -1" (click)= "createInventory()">INSERT</button>
+        <button class="button3" *ngIf="selectedInventory.id != -1" (click)= "deleteInventory()">DELETE</button>
+      </div>
+    
+  </div>
+
+<router-outlet></router-outlet>
